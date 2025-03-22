@@ -2,7 +2,7 @@
 // Connection parameters – update these with your actual details
 $serverName = "mysqlserverjadentest.database.windows.net";
 $connectionOptions = array(
-    "Database" => "master",
+    "Database" => "mySampleDatabase",
     "Uid" => "azureuser",
     "PWD" => "password@1",
     "TrustServerCertificate" => true
