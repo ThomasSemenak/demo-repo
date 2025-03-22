@@ -2,7 +2,7 @@
 // Azure SQL Database connection details
 $serverName = "mysqlserverjadentest.database.windows.net";
 $connectionOptions = array(
-    "Database" => "master",
+    "Database" => "mySampleDatabase",
     "Uid" => "azureuser",
     "PWD" => "password@1",
     "TrustServerCertificate" => true
