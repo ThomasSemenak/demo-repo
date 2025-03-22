@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert user data into the Users table using a parameterized query
-        $tsql = "INSERT INTO Users (username, email, password) VALUES (?, ?, ?)";
+        $tsql = "INSERT INTO dbo.Users (username, email, password) VALUES (?, ?, ?)";
         $params = array($username, $email, $hashedPassword);
         $stmt = sqlsrv_query($conn, $tsql, $params);
 
