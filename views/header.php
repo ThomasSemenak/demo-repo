@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 $base_url = "https://" . $_SERVER['HTTP_HOST'] . "/";
 
@@ -13,6 +13,9 @@ function isActive($page) {
 <html lang="en">
 <head>
     <!-- head content remains the same -->
+    <meta charset="UTF-8">
+    <title>News Portal</title>
+    <!-- (Other meta tags, CSS links, etc.) -->
 </head>
 <body>
 <div id="top-nav-bar">
@@ -32,21 +35,8 @@ function isActive($page) {
                 <a href="<?php echo $base_url; ?>src/Login/logout.php" class="nav-btn">Log Out</a>
             </div>
         <?php else: ?>
-            <!-- When not logged in, display two-line login form -->
-            <div class="login-form">
-                <form action="<?php echo $base_url; ?>src/Login/process_login.php" method="post">
-                    <div>
-                        <input type="text" name="username" placeholder="Username" required>
-                    </div>
-                    <div>
-                        <input type="password" name="password" placeholder="Password" required>
-                    </div>
-                    <div>
-                        <button type="submit">Login</button>
-                    </div>
-                </form>
-            </div>
-            <!-- Registration link remains unchanged -->
+            <!-- When not logged in, display Login and Register links -->
+            <a href="<?php echo $base_url; ?>src/Login/login_pageNew.php" class="nav-btn">Login</a>
             <a href="<?php echo $base_url; ?>src/Register/register_pageNew.php" class="nav-btn">Register</a>
         <?php endif; ?>
     </nav>
