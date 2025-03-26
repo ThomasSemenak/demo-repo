@@ -4,7 +4,7 @@ session_start();
 
 $base_url = "https://" . $_SERVER['HTTP_HOST'] . "/";
 
-// Process login logic
+// Process login logic using SQL Server connection
 $serverName = "ts19cpsqldb.database.windows.net";
 $connectionOptions = array(
     "Database" => "ts19cpdb3p96",
