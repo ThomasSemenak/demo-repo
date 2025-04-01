@@ -1,49 +1,53 @@
 <?php 
 // about.php
-
 include "./views/header.php";
 ?>
 <!-- Hero Section -->
 <div class="hero" style="background: url('assets/images/hero_about.jpg') no-repeat center center; background-size: cover; height: 300px; position: relative; color: #fff;">
   <div class="hero-overlay" style="background: rgba(0,0,0,0.6); position: absolute; top:0; left:0; width:100%; height:100%;"></div>
   <div class="hero-content" style="position: relative; z-index: 2; padding: 100px 20px; text-align: center;">
-    <h1>SmartSummaries</h1>
-    <p>Transforming web content into engaging social media posts</p>
+    <h1>About SmartSummaries</h1>
   </div>
 </div>
 
-<!-- Main About Content -->
+<!-- Main Content -->
 <div class="container section" style="padding: 60px 0;">
-  <h2 class="text-center mb-4">Our Mission</h2>
-  <p class="lead text-center">
-    At SmartSummaries, our mission is to empower you to quickly discover and share the most relevant content from the web. 
-    We bridge the gap between detailed online articles and the short, engaging posts you love on social media.
+
+  <!-- Project Inspiration -->
+  <h2>Project Inspiration &amp; Background</h2>
+  <p>
+    SmartSummaries began as a creative challenge during our semester-long project. As students, we noticed how overwhelming it can be to sift through endless online articles, yet many of these sources contain valuable insights. Inspired by the rise of social media and content curation tools, our team set out to build a platform that transforms detailed web content into concise, engaging posts. This project reflects our desire to make information more accessible and shareable.
   </p>
 
-  <h3 class="mt-5">What We Do</h3>
+  <!-- Objectives & Goals -->
+  <h2>Objectives &amp; Goals</h2>
   <p>
-    SmartSummaries works by taking your search keyword and gathering links from various reputable sources across the web. 
-    Our advanced summarization algorithms analyze each link and extract the key points into concise, reader-friendly posts.
-    Whether you need a quick digest for Facebook or a punchy snippet for Twitter, our tool is designed to help you save time and share smarter.
+    Our primary objective with SmartSummaries is to streamline the process of content sharing. We aim to empower users to quickly convert in-depth articles into summaries perfect for social media platforms like Facebook and Twitter. Through this project, we are also focused on expanding our technical skills—exploring web scraping, natural language processing, and responsive design. Ultimately, our goal is to create a functional tool that meets real user needs.
   </p>
 
-  <h3 class="mt-5">Our Vision & Story</h3>
+  <!-- Teams & Roles Section -->
+  <h2>Teams &amp; Roles</h2>
   <p>
-    Founded by innovators passionate about digital communication, SmartSummaries was built on the belief that valuable content should be accessible 
-    and easily shareable. We envisioned a future where the overwhelming abundance of online information is transformed into digestible, quality summaries 
-    that help our users stay informed and connected.
-  </p>
-  <p>
-    From our humble beginnings as a small project to a fully realized platform, we continue to refine our technology to ensure that every summary not only 
-    informs but also inspires conversation and engagement across social media channels.
+    <!-- This section is intentionally left blank for now -->
   </p>
 
-  <h3 class="mt-5">Our Team</h3>
+  <!-- Technologies & Methodologies -->
+  <h2>Technologies &amp; Methodologies</h2>
   <p>
-    Our dedicated team of developers, content strategists, and digital marketers work tirelessly to deliver a seamless experience that turns raw web data 
-    into artfully crafted posts. With expertise spanning machine learning, natural language processing, and UX design, our team is committed to excellence 
-    and continuous innovation.
+    To build SmartSummaries, we utilized a modern tech stack that includes <strong>PHP</strong> to manage server-side logic and dynamically fetch and process web content. <strong>Python</strong> was used in developing our summarization algorithms, efficiently handling data processing and natural language tasks. The website itself is built on a solid foundation of <strong>HTML</strong>, ensuring semantic and well-structured content, while <strong>CSS</strong> was used to create a responsive and visually appealing user interface. We adopted agile methodologies throughout the semester, working in iterative sprints that allowed us to continuously refine our design and functionality. Regular sprint meetings and testing cycles helped us improve the code quality and user experience.
   </p>
+
+  <!-- Future Enhancements -->
+  <h2>Future Enhancements</h2>
+  <p>
+    While SmartSummaries is a robust tool for our project, we see opportunities for growth in the future:
+  </p>
+  <ul>
+    <li><strong>User Feedback Loop:</strong> Develop a system to gather and analyze user feedback, ensuring continuous improvement and adaptation to user needs.</li>
+    <li><strong>Mobile Expansion:</strong> Build a mobile version and have that working on iOS and Android as we realize a large percentage of our user base will be using social media on their phones.</li>
+    <li><strong>Customization Options:</strong> Allow users to personalize summaries by adjusting tone for their posts.</li>
+  </ul>
+
 </div>
 
 <!-- Footer -->
