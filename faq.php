@@ -7,17 +7,11 @@ include "./views/header.php";
   <div class="hero-overlay" style="background: rgba(0,0,0,0.5); position: absolute; top:0; left:0; width:100%; height:100%;"></div>
   <div class="hero-content" style="position: relative; z-index: 2; padding: 60px 20px; text-align: center;">
     <h1>Frequently Asked Questions</h1>
-    <p>Your questions, answered with clarity and precision</p>
+    <p>Below you'll find answers to some of the most common questions we receive. If you need further assistance, feel free to reach out to us.</p>
   </div>
 </div>
 
-<!-- FAQ Intro -->
-<div class="container section" style="padding: 60px 0;">
-  <p class="lead text-center">
-    We understand that you might have questions about how SmartSummaries works, the technology behind it, and how we handle your data. 
-    Below you’ll find answers to some of the most common questions we receive. If you need further assistance, feel free to reach out to us.
-  </p>
-</div>
+
 
 <!-- FAQ Accordion -->
 <div class="container section" style="padding: 60px 0;">
@@ -33,8 +27,7 @@ include "./views/header.php";
       </div>
       <div id="faqCollapseOne" class="collapse show" aria-labelledby="faqHeadingOne" data-parent="#faqAccordion">
         <div class="card-body">
-          Our platform accepts your search keyword, retrieves the most relevant links from trusted sources, and then uses advanced summarization algorithms 
-          to convert detailed content into concise, shareable posts. This process happens in real time, ensuring you receive up-to-date summaries every time.
+          Our platform accepts your search keyword, retrieves the most relevant links from trusted sources, and then uses advanced summarization algorithms to convert detailed content into concise, shareable posts. This process happens in real time, ensuring you receive up-to-date summaries on whichever link you like.
         </div>
       </div>
     </div>
@@ -58,14 +51,13 @@ include "./views/header.php";
       <div class="card-header" id="faqHeadingThree">
         <h2 class="mb-0">
           <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
-            How is my data handled and secured?
+            Do I need an account to use SmartSummaries
           </button>
         </h2>
       </div>
       <div id="faqCollapseThree" class="collapse" aria-labelledby="faqHeadingThree" data-parent="#faqAccordion">
         <div class="card-body">
-          Your privacy and security are our top priorities. We process search queries on the fly without storing personal data, and all interactions are encrypted. 
-          Our robust security measures ensure that your information remains safe at every step.
+          SmartSummaries does not require an account to use the site. You can use the generate page to retrieve links and summaries with being logged in. However, if you want to save posts to your dashboard or share them directly to social media, you'll need to log in. Once logged in, your dashboard will store your saved posts, and you can access and post them directly from the website each time you log in.
         </div>
       </div>
     </div>
@@ -80,7 +72,7 @@ include "./views/header.php";
       </div>
       <div id="faqCollapseFour" class="collapse" aria-labelledby="faqHeadingFour" data-parent="#faqAccordion">
         <div class="card-body">
-          Absolutely! Once a summary is generated, you have the option to edit and customize it. This allows you to adjust tone, add personal touches, or include additional context before posting.
+          Absolutely! Once a summary is generated, you have the option to edit and customize it. This allows you to add personal touches, or include additional context before posting.
         </div>
       </div>
     </div>
@@ -95,8 +87,7 @@ include "./views/header.php";
       </div>
       <div id="faqCollapseFive" class="collapse" aria-labelledby="faqHeadingFive" data-parent="#faqAccordion">
         <div class="card-body">
-          If you have any additional questions or need personalized support, please email our team at <a href="mailto:contact@smartsummaries.com">contact@smartsummaries.com</a>. 
-          We’re here to help and value every piece of feedback.
+          If you have any additional questions or need personalized support, please email our team at. 
         </div>
       </div>
     </div>
