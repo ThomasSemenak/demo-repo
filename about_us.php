@@ -7,8 +7,8 @@ include "./views/header.php";
 <div class="hero" style="background: url('assets/images/hero_about.jpg') no-repeat center center; background-size: cover; height: 300px; position: relative; color: #fff;">
   <div class="hero-overlay" style="background: rgba(0,0,0,0.6); position: absolute; top:0; left:0; width:100%; height:100%;"></div>
   <div class="hero-content" style="position: relative; z-index: 2; padding: 100px 20px; text-align: center;">
-    <h1>About SmartSummaries</h1>
-    <p>Transforming complex web content into engaging social media posts</p>
+    <h1>SmartSummaries</h1>
+    <p>Transforming web content into engaging social media posts</p>
   </div>
 </div>
 
