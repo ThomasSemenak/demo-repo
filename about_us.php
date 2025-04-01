@@ -3,9 +3,9 @@
 include "./views/header.php";
 ?>
 <!-- Hero Section -->
-<div class="hero" style="background: url('assets/images/hero_about.jpg') no-repeat center center; background-size: cover; height: 300px; position: relative; color: #fff;">
+<div class="hero" style="background: url('assets/images/hero_about.jpg') no-repeat center center; background-size: cover; height: 200px; position: relative; color: #fff;">
   <div class="hero-overlay" style="background: rgba(0,0,0,0.6); position: absolute; top:0; left:0; width:100%; height:100%;"></div>
-  <div class="hero-content" style="position: relative; z-index: 2; padding: 55px 20px; text-align: center;">
+  <div class="hero-content" style="position: relative; z-index: 2; padding: 60px 20px; text-align: center;">
     <h1>About SmartSummaries</h1>
   </div>
 </div>
