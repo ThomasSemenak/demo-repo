@@ -1,6 +1,6 @@
 <?php 
 // faq.php
-include('header.php'); 
+include "./views/header.php";
 ?>
 <!-- Hero Section -->
 <div class="hero" style="background: url('assets/images/hero_faq.jpg') no-repeat center center; background-size: cover; height: 200px; position: relative; color: #fff;">
