@@ -14,7 +14,7 @@ include "./views/header.php";
 
 
 <!-- FAQ Accordion -->
-<div class="container section" style="padding: 60px 0;">
+<div class="container section" style="padding: 40px 20px;">
   <div class="accordion" id="faqAccordion">
     <!-- FAQ Item 1 -->
     <div class="card">
