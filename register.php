@@ -5,6 +5,7 @@ session_start();
 require 'config.php';
 
 $errorMessage = "";
+$successMessage = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstname     = trim($_POST['firstname']);
@@ -33,9 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':password', $passwordInput);
         
         if($stmt->execute()) {
-            // Redirect to login page with a success flag
-            header("Location: login.php?success=1");
-            exit();
+            $successMessage = "Registration successful! You can now <a href='login.php'>login</a>.";
         } else {
             $errorMessage = "Registration failed. Please try again.";
         }
@@ -53,6 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2>Register</h2>
     <?php if($errorMessage != ""): ?>
         <p style="color:red;"><?php echo $errorMessage; ?></p>
+    <?php endif; ?>
+    <?php if($successMessage != ""): ?>
+        <p style="color:green;"><?php echo $successMessage; ?></p>
     <?php endif; ?>
     <form method="post" action="register.php">
         <label>First Name:</label>
