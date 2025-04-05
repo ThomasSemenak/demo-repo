@@ -46,6 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <h2>Login</h2>
+    <?php if(isset($_GET['success'])): ?>
+        <p style="color:green;">Registration successful! Please login.</p>
+    <?php endif; ?>
     <?php if($errorMessage != ""): ?>
         <p style="color:red;"><?php echo $errorMessage; ?></p>
     <?php endif; ?>
