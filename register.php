@@ -5,13 +5,12 @@ session_start();
 require 'config.php';
 
 $errorMessage = "";
-$successMessage = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $firstname   = trim($_POST['firstname']);
-    $lastname    = trim($_POST['lastname']);
-    $email       = trim($_POST['email']);
-    $phonenumber = trim($_POST['phonenumber']);
+    $firstname     = trim($_POST['firstname']);
+    $lastname      = trim($_POST['lastname']);
+    $email         = trim($_POST['email']);
+    $phonenumber   = trim($_POST['phonenumber']);
     $passwordInput = trim($_POST['password']);
 
     // Check if a user with the same email already exists
@@ -34,7 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':password', $passwordInput);
         
         if($stmt->execute()) {
-            $successMessage = "Registration successful! You can now <a href='login.php'>login</a>.";
+            // Redirect to login page with a success flag
+            header("Location: login.php?success=1");
+            exit();
         } else {
             $errorMessage = "Registration failed. Please try again.";
         }
@@ -52,9 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2>Register</h2>
     <?php if($errorMessage != ""): ?>
         <p style="color:red;"><?php echo $errorMessage; ?></p>
-    <?php endif; ?>
-    <?php if($successMessage != ""): ?>
-        <p style="color:green;"><?php echo $successMessage; ?></p>
     <?php endif; ?>
     <form method="post" action="register.php">
         <label>First Name:</label>
