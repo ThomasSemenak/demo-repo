@@ -3,12 +3,11 @@
 session_start();
 
 // If the user is not logged in, redirect to login page
-if(!isset($_SESSION['UserName'])) {
+if (!isset($_SESSION['UserName'])) {
     header("Location: login.php");
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +15,13 @@ if(!isset($_SESSION['UserName'])) {
     <title>Welcome</title>
 </head>
 <body>
-    <h2>Welcome, <?php echo htmlspecialchars($_SESSION['UserName']); ?>!</h2>
-    <p><a href="logout.php">Sign Out</a></p>
+    <!-- Include the header -->
+    <?php include 'header.php'; ?>
+
+    <!-- Main content area -->
+    <div>
+        <h2>Dashboard</h2>
+        <p>This is the main content area of your dashboard.</p>
+    </div>
 </body>
 </html>
