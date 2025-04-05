@@ -1,6 +1,6 @@
 <?php
 // config.php
-$serverName = "tcp:yourserver.database.windows.net,1433";
+$serverName = "ts19cpsqldb.database.windows.net,1433";
 $database   = "ts19cpdb3p96";
 $username   = "ts19cp";
 $password   = "@Group93p96";
