@@ -39,7 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Execute the statement
         $stmt->execute();
 
-        $message = "Registration successful!";
+        // Updated success message with a login hyperlink
+        $message = "Registration successful! You may now <a href='login.php'>login</a>.";
     } catch (PDOException $e) {
         // In production, log errors and display a generic error message to the user.
         $message = "Error: " . $e->getMessage();
@@ -54,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <h2>Register</h2>
-    <?php if (isset($message)) { echo "<p>" . htmlspecialchars($message) . "</p>"; } ?>
+    <?php if (isset($message)) { echo "<p>" . $message . "</p>"; } ?>
     <form method="post" action="">
         <div>
             <label for="firstname">First Name:</label>
