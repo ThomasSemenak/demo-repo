@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if($passwordInput == $user['password']) {
             $_SESSION['UserName'] = $user['firstname'];
             $_SESSION['user_id']=$user['id'];
+            $_SESSION['Last']=$user['lastname'];
             header("Location: welcome.php");
             exit();
         } else {
