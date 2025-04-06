@@ -7,7 +7,8 @@ if (!isset($_SESSION['UserName'])) {
     exit();
 }
 
-
+$page_title="News Portal";
+$page_styles=["dashboard.css"];
 
 ?>
 <!DOCTYPE html>
