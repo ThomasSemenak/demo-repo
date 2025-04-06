@@ -16,8 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $passwordInput = trim($_POST['password']);
     
-    // Prepare a query to retrieve the user's firstname and password
-    $query = "SELECT firstname, [password] FROM users2 WHERE email = :email";
+    // Prepare a query to retrieve the user's firstname and password and ID
+    $query = "SELECT id, firstname, [password] FROM users2 WHERE email = :email";
     $stmt = $conn->prepare($query);
     $stmt->bindParam(':email', $email);
     $stmt->execute();
