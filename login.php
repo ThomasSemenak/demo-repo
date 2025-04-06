@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // In production, use password hashing and verification instead of plain text comparison
         if($passwordInput == $user['password']) {
             $_SESSION['UserName'] = $user['firstname'];
+            $_SESSION['user_id']=$user['id'];
             header("Location: welcome.php");
             exit();
         } else {
