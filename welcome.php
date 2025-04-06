@@ -7,6 +7,8 @@ if (!isset($_SESSION['UserName'])) {
     header("Location: login.php");
     exit();
 }
+
+echo "Your User ID is:". htmlspecialchars($_SESSION['user_id']);    
 ?>
 <!DOCTYPE html>
 <html>
