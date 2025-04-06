@@ -8,7 +8,7 @@ if (!isset($_SESSION['UserName'])) {
     exit();
 }
 
-echo "Your User ID is:". htmlspecialchars($_SESSION['UserName']);    
+echo "Your User ID is:". htmlspecialchars($_SESSION['user_id']);    
 ?>
 <!DOCTYPE html>
 <html>
