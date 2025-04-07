@@ -110,7 +110,8 @@
  sqlsrv_free_stmt($stmt);
  sqlsrv_close($conn);
  
- include "./views/header.php";
+ //include "./views/header.php";
+include header.php;
  ?>
 
  
