@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+     session_start();
+ }
 //$base_url = "http://localhost:8080/";
 $base_url = "https://" . $_SERVER['HTTP_HOST'] . "/";
 
@@ -32,20 +34,18 @@ function isActive($page) {
 </head>
 <body>
 
-<div id="top-nav-bar">
-    <div id="nav-title"><h2>News Portal</h2></div>
-    <nav id="main-nav-bar">
-        <a href="<?php echo $base_url;?>index.php" class="<?php echo isActive('index.php');?>">Dashboard</a>
-        <a href="<?php echo $base_url;?>src/Generate/generate_page.php" class="<?php echo isActive('generate_page.php');?>">Generate</a>
-        <a href="<?php echo $base_url;?>about_us.php" class="<?php echo isActive('about_us.php');?>">About Us</a>
-        <a href="<?php echo $base_url;?>faq.php" class="<?php echo isActive('faq.php');?>">FAQ</a>
-        
-        <?php if (!empty($_SESSION['user_id'])): ?>
-            <a href="<?php echo $base_url;?>src/Profile/profile_page.php" class="<?php echo isActive('profile_page.php');?>">Profile</a>
-            <a href="<?php echo $base_url;?>logout.php" class="nav-btn" style="margin-left: 10px; color: red;">Logout</a>
-        <?php else: ?>
-            <a href="<?php echo $base_url;?>src/Login/login_pageNew.php" class="<?php echo isActive('login_pageNew.php');?>">Login</a>
-            <a href="<?php echo $base_url;?>src/Register/register_pageNew.php" class="<?php echo isActive('register_pageNew.php');?>">Register</a>
-        <?php endif; ?>
-    </nav>
-</div>
+<div style="width: 100%; background-color: #f1f1f1; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+     <!-- Navigation Menu -->
+     <div>
+         <a href="welcome.php" style="margin-right: 15px; text-decoration: none;">Welcome</a>
+         <a href="index.php" style="margin-right: 15px; text-decoration: none;">Dashboard</a>
+         <a href="generate.php" style="margin-right: 15px; text-decoration: none;">Generate</a>
+         <a href="About_Us.php" style="margin-right: 15px; text-decoration: none;">About Us</a>
+         <a href="faq.php" style="text-decoration: none;">FAQ</a>
+     </div>
+     <!-- User Welcome and Sign Out -->
+     <div>
+         <span>Welcome, <?php echo htmlspecialchars($_SESSION['UserName']); ?>!</span>
+         <a href="logout.php" style="margin-left: 15px; text-decoration: none; font-weight: bold;">Sign Out</a>
+     </div>
+ </div>
