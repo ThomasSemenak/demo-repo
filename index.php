@@ -110,8 +110,26 @@
  sqlsrv_free_stmt($stmt);
  sqlsrv_close($conn);
  
- include "./views/header.php";
+ //include "./views/header.php";
  ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+    <!-- Include the header -->
+    <?php include 'header.php'; ?>
+
+    <!-- Main content area -->
+    <div>
+        <h2>Dashboard</h2>
+        <p>Hopefully this appears.</p>
+    </div>
+</body>
+</html>
  
  <div class="main-container">
  
