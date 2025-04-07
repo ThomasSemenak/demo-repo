@@ -1,76 +1,66 @@
 <?php
+// login.php
 session_start();
-ob_start();
 
-//$base_url = "http://localhost:8080/";
-$base_url = "https://" . $_SERVER['HTTP_HOST'] . "/";
-
-// Process login logic
-$serverName = "ts19cpsqldb.database.windows.net";
-$connectionOptions = array(
-    "Database" => "ts19cpdb3p96",
-    "Uid" => "ts19cp",
-    "PWD" => "@Group93p96",
-    "TrustServerCertificate" => true
-);
-$conn = sqlsrv_connect($serverName, $connectionOptions);
-if ($conn === false) {
-    die("Connection failed: " . print_r(sqlsrv_errors(), true));
+// If user is already logged in, redirect to welcome page
+if(isset($_SESSION['UserName'])) {
+    header("Location: welcome.php");
+    exit();
 }
 
-$message = "";
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = trim($_POST['username']);
-    $password = $_POST['password'];
+require 'config.php';
 
-    $tsql   = "SELECT * FROM Users WHERE username = ?";
-    $params = array($username);
-    $stmt   = sqlsrv_query($conn, $tsql, $params);
+$errorMessage = "";
 
-    if ($stmt === false) {
-        $message = "Login error: " . print_r(sqlsrv_errors(), true);
-    } else {
-        $user = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-        if ($user && password_verify($password, $user['password'])) {
-            // Set session variables for logged in user
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            session_write_close();
-            header("Location: " . $base_url . "index.php");
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = trim($_POST['email']);
+    $passwordInput = trim($_POST['password']);
+    
+    // Prepare a query to retrieve the user's firstname and password and ID
+    $query = "SELECT id, firstname, [password] FROM users2 WHERE email = :email";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if($user) {
+        // In production, use password hashing and verification instead of plain text comparison
+        if($passwordInput == $user['password']) {
+            $_SESSION['UserName'] = $user['firstname'];
+            $_SESSION['user_id']=$user['id'];
+            $_SESSION['Last']=$user['lastname'];
+            header("Location: welcome.php");
             exit();
         } else {
-            $message = "Invalid username or password.";
+            $errorMessage = "Invalid email or password.";
         }
+    } else {
+        $errorMessage = "Invalid email or password.";
     }
-    sqlsrv_free_stmt($stmt);
 }
+?>
 
-$page_title  = "Login";
-$page_styles = ["login-register.css"];
-include "../../views/header.php";
-?>
-<!-- Your login form HTML follows -->
-<div class="main-container">
-    <div class="content-container">
-        <h2>Login</h2>
-        <?php if(!empty($message)): ?>
-            <div class="message"><?php echo $message; ?></div>
-        <?php endif; ?>
-        <div class="form-container">
-            <form action="login_pageNew.php" method="post" class="main-form">
-                <input type="text" id="username" name="username" placeholder="Username" required>
-                <input type="password" id="password" name="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
-            <div class="login-signup-redirect">
-                <p>Don't have an account?</p>
-                <a href="<?php echo $base_url; ?>src/Register/register_pageNew.php" class="login-signup-link">Register Here</a>
-            </div>
-        </div>
-    </div>
-</div>
-<?php
-$page_scripts = ["login_script.js"];
-include "../../views/footer.php";
-ob_end_flush();
-?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <?php if(isset($_GET['success'])): ?>
+        <p style="color:green;">Registration successful! Please login.</p>
+    <?php endif; ?>
+    <?php if($errorMessage != ""): ?>
+        <p style="color:red;"><?php echo $errorMessage; ?></p>
+    <?php endif; ?>
+    <form method="post" action="login.php">
+        <label>Email:</label>
+        <input type="text" name="email" required><br>
+        <label>Password:</label>
+        <input type="password" name="password" required><br>
+        <input type="submit" value="Login">
+    </form>
+    <p>Don't have an account? <a href="register.php">Register here</a>.</p>
+</body>
+</html>
