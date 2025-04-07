@@ -1,74 +1,83 @@
 <?php
+// Azure SQL Database connection settings
+$serverName = "ts19cpsqldb.database.windows.net,1433";
+$database = "ts19cpdb3p96";
+$username = "ts19cp";
+$password = "@Group93p96";
 
-//$base_url = "http://localhost:8080/";
-$base_url = "https://" . $_SERVER['HTTP_HOST'] . "/";
+// Check if the form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collect and sanitize user input (more validation/sanitization is recommended)
+    $firstName = $_POST["firstname"];
+    $lastName = $_POST["lastname"];
+    $email = $_POST["email"];
+    $phoneNumber = !empty($_POST["phonenumber"]) ? $_POST["phonenumber"] : null;
+    $plainPassword = $_POST["password"];
+    
+    // In production, hash the password securely.
+    // $hashedPassword = password_hash($plainPassword, PASSWORD_DEFAULT);
+    // For demonstration purposes, we're using the plain text (do not do this in production!)
+    $hashedPassword = $plainPassword;
 
-// Process registration logic
-$serverName = "ts19cpsqldb.database.windows.net";
-$connectionOptions = array(
-    "Database" => "ts19cpdb3p96",
-    "Uid" => "ts19cp",
-    "PWD" => "@Group93p96",
-    "TrustServerCertificate" => true
-);
-$conn = sqlsrv_connect($serverName, $connectionOptions);
-if ($conn === false) {
-    die("Connection failed: " . print_r(sqlsrv_errors(), true));
-}
+    try {
+        // Create a new PDO connection to the Azure SQL Database
+        $conn = new PDO("sqlsrv:Server=$serverName;Database=$database", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$message = "";
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = trim($_POST['username']);
-    $email    = trim($_POST['email']);
-    $password = $_POST['password'];
+        // Prepare a parameterized SQL statement to prevent SQL injection
+        $sql = "INSERT INTO users2 (firstname, lastname, email, phonenumber, [password])
+                VALUES (:firstname, :lastname, :email, :phonenumber, :password)";
+        $stmt = $conn->prepare($sql);
 
-    if(empty($username) || empty($email) || empty($password)) {
-        $message = "All fields are required.";
-    } else {
-        // Hash the password for security
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        // Insert user data into the Users table
-        $tsql   = "INSERT INTO Users (username, email, password) VALUES (?, ?, ?)";
-        $params = array($username, $email, $hashedPassword);
-        $stmt   = sqlsrv_query($conn, $tsql, $params);
+        // Bind parameters
+        $stmt->bindParam(':firstname', $firstName);
+        $stmt->bindParam(':lastname', $lastName);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':phonenumber', $phoneNumber);
+        $stmt->bindParam(':password', $hashedPassword);
 
-        if ($stmt === false) {
-            $message = "Registration error: " . print_r(sqlsrv_errors(), true);
-        } else {
-            $message = "Registration successful! You can now <a href='" . $base_url . "src/Login/login_pageNew.php'>login</a>.";
-        }
-        sqlsrv_free_stmt($stmt);
+        // Execute the statement
+        $stmt->execute();
+
+        // Updated success message with a login hyperlink
+        $message = "Registration successful! You may now <a href='login.php'>login</a>.";
+    } catch (PDOException $e) {
+        // In production, log errors and display a generic error message to the user.
+        $message = "Error: " . $e->getMessage();
     }
 }
-
-// Set page variables for header/footer
-$page_title  = "Register";
-$page_styles = ["login-register.css"];
-include "../../views/header.php";
 ?>
-
-<div class="main-container">
-    <div class="content-container">
-        <h2>Register</h2>
-        <?php if(!empty($message)): ?>
-            <div class="message"><?php echo $message; ?></div>
-        <?php endif; ?>
-        <div class="form-container">
-            <form action="register_pageNew.php" method="post" class="main-form">
-                <input type="email" id="email" name="email" placeholder="Email" required>
-                <input type="text" id="username" name="username" placeholder="Username" required>
-                <input type="password" id="password" name="password" placeholder="Password" required>
-                <button type="submit">Register</button>
-            </form>
-            <div class="login-signup-redirect">
-                <p>Already have an account?</p>
-                <a href="<?php echo $base_url; ?>src/Login/login_pageNew.php" class="login-signup-link">Login Here</a>
-            </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+    <h2>Register</h2>
+    <?php if (isset($message)) { echo "<p>" . $message . "</p>"; } ?>
+    <form method="post" action="">
+        <div>
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" required />
         </div>
-    </div>
-</div>
-
-<?php
-$page_scripts = ["register_script.js"];
-include "../../views/footer.php";
-?>
+        <div>
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" required />
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+        </div>
+        <div>
+            <label for="phonenumber">Phone Number:</label>
+            <input type="text" id="phonenumber" name="phonenumber" />
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
