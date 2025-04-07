@@ -5,8 +5,13 @@
 
 <?php
 session_start();
-$_SESSION['user_id'] = $user_id;
-$_SESSION['profile_pic'] = isset($profile_pic_url) ? $profile_pic_url : 'default-profile-pic.png';
+
+if (!isset($_SESSION['UserName'])) {
+    header("Location: login.php");
+    exit();
+}
+
+
 
 $page_title = "News Portal";
 $page_styles = ["dashboard.css"];
@@ -110,8 +115,27 @@ if ($json_data === false) {
 sqlsrv_free_stmt($stmt);
 sqlsrv_close($conn);
 
-include "./views/header.php";
 ?>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+    <!-- Include the header -->
+    <?php include 'header.php'; ?>
+
+    <!-- Main content area -->
+    <div>
+        <h2>Dashboard</h2>
+        <p>Hopefully this appears.</p>
+    </div>
+</body>
+</html>
 
 <div class="main-container">
 
